@@ -145,13 +145,18 @@ header h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: 24px;
 }
 .board__you-win button {
-  margin-top: 12px;
+  margin-top: 36px;
+  --button-size: 24px;
 }
 .board__you-win button.play-next-level {
   background-color: #69247C;
   color: white;
+}
+.board__you-win button.play-next-level:hover {
+  background-color: #59146C;
 }
 .board__you-win > *:first-child {
   margin-top: auto;
@@ -248,4 +253,12 @@ code {
   background-color: #FAF6E3;
   padding: 2px;
   border-radius: 4px;
+}
+button {
+  border: none;
+  --this-button-size: var(--button-size, 1em);
+  border-radius: calc(1.5 * var(--this-button-size));
+  padding: calc(0.5 * var(--this-button-size)) var(--this-button-size);
+  font-size: var(--this-button-size);
+  cursor: pointer;
 }
