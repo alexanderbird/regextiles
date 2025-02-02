@@ -50,6 +50,14 @@ header h1 {
   --initial-color: #09122C;
   color: var(--initial-color);
   transition: color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.instructions h2 {
+  margin-bottom: 0;
+  padding: 12px 12px 0 12px;
+  border-radius: 4px
 }
 
 .instructions article {
@@ -57,7 +65,7 @@ header h1 {
   border-radius: 4px;
   margin-top: -4px;
 }
-.instructions article > h2 {
+.instructions article > h3 {
   margin-top: 4px;
 }
 
@@ -77,6 +85,7 @@ header h1 {
 .level-0 .instructions .emphasize-on-level-0 {
   color: #09122C;
   background-color: #D4F6FF;
+  order: -1;
 }
 
 .game {
