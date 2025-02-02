@@ -71,13 +71,6 @@
       </ul>
     </article>
     <article class='emphasize-on-level-5 emphasize-on-level-6 emphasize-on-level-7'>
-      <h3>Special Characters</h3>
-      <ul>
-        <li>Use <code>\d</code> to match any digit</li>
-        <li>Use <code>\X</code> to escape some character X (e.g. match $ with <code>\$</code>)</li>
-      </ul>
-    </article>
-    <article class='emphasize-on-level-5 emphasize-on-level-6 emphasize-on-level-7'>
       <h3>Character Classes</h3>
       <ul>
         <li><code>[xyz]</code> defines a character class, which means "one tile that contains either x or y or z"</li>
@@ -85,6 +78,13 @@
         <li>Common character class ranges: <code>A-Z</code>, <code>a-z</code>, <code>0-9</code></li>
         <li>A character class can have several ranges (e.g. match any alphanumeric with <code>[A-Za-z0-9]</code></li>
         <li>Use <code>^</code> inside square braces to negate a character class to match everything except (e.g. match efgh with <code>[^a-d]</code>)
+      </ul>
+    </article>
+    <article class='emphasize-on-level-8 emphasize-on-level-9'>
+      <h3>Special Characters</h3>
+      <ul>
+        <li>To match a character that usually has a special meaning, you will need to escape that character with backslash</li>
+        <li>Use <code>\X</code> to escape some character X (e.g. match $ with <code>\$</code>)</li>
       </ul>
     </article>
     <article>

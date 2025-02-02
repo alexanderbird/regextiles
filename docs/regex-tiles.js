@@ -175,7 +175,7 @@ function getGameConfiguration() {
   const advancedLetters = [
     'abcABC123'.repeat(4),
     '-_,'.repeat(2),
-    '+^$.'
+    '+^$.\\'
   ].join('').split('');
   if (level === 6) {
     return { ...baseConfigLevels4To6, letters: advancedLetters };
