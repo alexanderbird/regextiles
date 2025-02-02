@@ -1,3 +1,19 @@
+@font-face {
+  font-family: "Goldman-Regular";
+  src:
+    url("./fonts/Goldman-Regular.woff2") format("woff");
+}
+@font-face {
+  font-family: "JetBrainsMono-Regular";
+  src:
+    url("./fonts/JetBrainsMono-Regular.woff2") format("woff");
+}
+@font-face {
+  font-family: "ScopeOne-Regular";
+  src:
+    url("./fonts/ScopeOne-Regular.woff2") format("woff");
+}
+
 body {
   --square: 12px;
   --gap: 2px;
@@ -14,6 +30,10 @@ body {
     'footer';
   grid-template-rows: auto auto 50px auto auto;
   grid-template-columns: auto;
+  --font-family-display: 'Goldman-Regular';
+  --font-family-serif: 'ScopeOne-Regular';
+  --font-family-mono: 'JetBrainsMono-Regular';
+  font-family: var(--font-family-serif), serif;
 }
 
 @media (min-width: 700px) {
@@ -27,11 +47,19 @@ body {
   }
 }
 
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-family-display), sans-serif;
+}
+
 header {
   grid-area: header;
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: var(--font-family-display), sans-serif;
 }
 
 footer {
@@ -223,22 +251,27 @@ header h1 {
   font-size: 32px;
   padding: 12px;
   border-radius: 8px;
+  font-family: var(--font-family-mono), monospace;
+  display: flex;
+  flex-direction: row;
 }
 .input:before {
   content: '/';
   color: gray;
+  display: block;
 }
 .input:after {
   content: '/g';
   color: gray;
+  display: block;
 }
 .input input {
   border-top: 0;
   border-right: 0;
   border-left: 0;
   outline: 0;
-  width: 6em;
-  font-family: monospace;
+  width: 5em;
+  font-family: inherit;
   background-color: transparent;
   font-size: inherit;
 }
@@ -253,6 +286,7 @@ code {
   background-color: #FAF6E3;
   padding: 2px;
   border-radius: 4px;
+  font-family: var(--font-family-mono), monospace;
 }
 button {
   border: none;
