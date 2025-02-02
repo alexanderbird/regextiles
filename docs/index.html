@@ -39,23 +39,40 @@
       <li>You're only allowed to match tiles of one color at a time</li>
       <li>If you match more than one color, your match is invalid</li>
       <li>Your regex is applied when the timer expires or when you press Enter</li>
+      <li>Your regex is applied with the "g" (global) flag so it can match multiple parts of the line</li>
     </ul>
-    <h2>Regular Expressions</h2>
+    <h2>Tips</h2>
+    <h3>Matching Tiles</h3>
     <ul>
       <li>Use <code>.</code> to match any character</li>
+      <li>you can match exactly one letter by typing only that letter</li>
+      <li>you can match multiple letters by joining them with pipe characters (<code>|</code>)</li>
+    </ul>
+    <h3>Avoiding Certain Tiles</h3>
+    <ul>
+      <li>Use spaces to pinpoint a specific letter (e.g. use <code> A</code> to match an "A" that has no tile before it)</li>
+      <li>You can match "any character except x or y" with the regex <code>[^xy]</code></li>
+      <li>You can match a sequence of letters by typing them all out</li>
+      <li>You can match characters relative to the start or end with <code>^</code> and <code>$</code></li>
+    </ul>
+    <h3>Repeating Characters</h3>
+    <ul>
+      <li>Use <code>+</code> to repeat a character one or more times (e.g. match aaaaaa with <code>a+</code></li>
+      <li>Use <code>*</code> to repeat a character zero or more times (e.g. match aaaaaa or the empty string with <code>a+</code></li>
+      <li>Use <code>{n}</code> to repeat a character n times (e.g. match aaaaaa with <code>a{6}</code></li>
+    </ul>
+    <h3>Special Characters</h3>
+    <ul>
       <li>Use <code>\d</code> to match any digit</li>
-      <li>Use <code>[]</code> to describe a character class</li>
+      <li>Use <code>\X</code> to escape some character X (e.g. match $ with <code>\$</code>)</li>
+    </ul>
+    <h3>Character Classes</h3>
+    <ul>
+      <li><code>[xyz]</code> defines a character class, which means "one tile that contains either x or y or z"</li>
       <li>Use a range within a character class (e.g. match abcd with <code>[a-d]</code>)</li>
       <li>Common character class ranges: <code>A-Z</code>, <code>a-z</code>, <code>0-9</code></li>
       <li>A character class can have several ranges (e.g. match any alphanumeric with <code>[A-Za-z0-9]</code></li>
       <li>Use <code>^</code> inside square braces to negate a character class to match everything except (e.g. match efgh with <code>[^a-d]</code>)
-      <li>Use <code>+</code> to repeat a character one or more times (e.g. match aaaaaa with <code>a+</code></li>
-      <li>Use <code>*</code> to repeat a character zero or more times (e.g. match aaaaaa or the empty string with <code>a+</code></li>
-      <li>Use <code>{n}</code> to repeat a character n times (e.g. match aaaaaa with <code>a{6}</code></li>
-      <li>Use <code>^</code> to match the start of the line (e.g. match the first a with <code>^a</code></li>
-      <li>Use <code>$</code> to match the end of the line (e.g. match the last a with <code>a$</code></li>
-      <li>Use <code>|</code> to match one thing or another (e.g. match this or that with <code>this|that</code>)</li>
-      <li>Use <code>\X</code> to escape some character X (e.g. match $ with <code>\$</code>)</li>
     </ul>
     <button class='play-first-level'>Reset To The First Level</button>
   </section>
@@ -75,7 +92,7 @@
       <div class="board__column"></div>
       <div class="board__column"></div>
       <div class="board__you-win">
-        <span>You Win! 🎉</span>
+        <span>Level Complete! 🎉</span>
         <button class='play-next-level'>Play level <span class='data__next-level'></span></button>
       </div>
     </div>

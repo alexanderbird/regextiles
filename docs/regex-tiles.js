@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', main);
-const level = Number(window.localStorage.getItem('level') || 1)
+const level = Number(window.localStorage.getItem('level') || 0)
 const { tilesPerTick, tickTime, numberOfPreGameTicks, letters, colors } = getGameConfiguration();
 
 const ENTER_KEY_CODE = 13;
@@ -141,16 +141,20 @@ function getGameConfiguration() {
   const baseConfigLevels1To3 = {
     tilesPerTick: 2,
     tickTime: 20,
-    numberOfPreGameTicks: 6
+    numberOfPreGameTicks: 6,
+    letters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
+  }
+  if (level === 0) {
+    return { ...baseConfigLevels1To3, tilesPerTick: 1, colors: [COLOR_1] };
   }
   if (level === 1) {
-    return { ...baseConfigLevels1To3, letters: 'A'.split(''), colors: [COLOR_1] };
+    return { ...baseConfigLevels1To3, tilesPerTick: 1, colors: [COLOR_1, COLOR_2] };
   }
   if (level === 2) {
-    return { ...baseConfigLevels1To3, letters: 'A1'.split(''), colors: colorsSplit25To75 };
+    return { ...baseConfigLevels1To3, colors: colorsSplit25To75 };
   }
   if (level === 3) {
-    return { ...baseConfigLevels1To3, letters: 'ABC123'.split(''), colors: colorsSplit25To75 };
+    return { ...baseConfigLevels1To3, colors: colorsSplit25To75 };
   }
   const baseConfigLevels4To6 = {
     tilesPerTick: 3,

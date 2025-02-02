@@ -210,3 +210,8 @@ header h1 {
   background-color: #A0153E22
 }
 
+code {
+  background-color: #FAF6E3;
+  padding: 2px;
+  border-radius: 4px;
+}
