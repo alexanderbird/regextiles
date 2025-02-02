@@ -31,50 +31,65 @@
     <p>Eliminate the falling tiles in real-time with your sweet RegEx skills.</p>
   </header>
   <section class="instructions">
-    <h2>Gameplay</h2>
-    <ul>
-      <li>Type some RegEx to match tiles</li>
-      <li>You're matching against the bottom row</li>
-      <li>Empty columns are treated as spaces</li>
-      <li>You're only allowed to match tiles of one color at a time</li>
-      <li>If you match more than one color, your match is invalid</li>
-      <li>Your regex is applied when the timer expires or when you press Enter</li>
-      <li>Your regex is applied with the "g" (global) flag so it can match multiple parts of the line</li>
-    </ul>
+    <article class='emphasize-on-level-0'>
+      <h2>Gameplay</h2>
+      <ul>
+        <li>Type some RegEx to match tiles</li>
+        <li>You're matching against the bottom row</li>
+        <li>Empty columns are treated as spaces</li>
+        <li>You're only allowed to match tiles of one color at a time</li>
+        <li>If you match more than one color, your match is invalid</li>
+        <li>Your regex is applied when the timer expires or when you press Enter</li>
+        <li>Your regex is applied with the "g" (global) flag so it can match multiple parts of the line</li>
+      </ul>
+    </article>
     <h2>Tips</h2>
-    <h3>Matching Tiles</h3>
-    <ul>
-      <li>Use <code>.</code> to match any character</li>
-      <li>you can match exactly one letter by typing only that letter</li>
-      <li>you can match multiple letters by joining them with pipe characters (<code>|</code>)</li>
-    </ul>
-    <h3>Avoiding Certain Tiles</h3>
-    <ul>
-      <li>Use spaces to pinpoint a specific letter (e.g. use <code> A</code> to match an "A" that has no tile before it)</li>
-      <li>You can match "any character except x or y" with the regex <code>[^xy]</code></li>
-      <li>You can match a sequence of letters by typing them all out</li>
-      <li>You can match characters relative to the start or end with <code>^</code> and <code>$</code></li>
-    </ul>
+    <article class='emphasize-on-level-1 emphasize-on-level-2'>
+      <h3>Matching Tiles</h3>
+      <ul>
+        <li>Use <code>.</code> to match any character</li>
+        <li>You can match exactly one letter by typing only that letter</li>
+        <li>You can match multiple letters by joining them with pipe characters (<code>|</code>)</li>
+        <li>You can match everything between two letters with <code>X.*Y</code> (which means "X followed by anything followed by Y")</li>
+      </ul>
+    </article>
+    <article class='emphasize-on-level-1 emphasize-on-level-2 emphasize-on-level-3 emphasize-on-level-4'>
+      <h3>Avoiding Certain Tiles</h3>
+      <ul>
+        <li>Use spaces to pinpoint a specific letter (e.g. use <code> A</code> to match an "A" that has no tile before it)</li>
+        <li>You can match a sequence of letters by typing them all out</li>
+        <li>You can match "any character except x or y" with the regex <code>[^xy]</code></li>
+        <li>You can match characters relative to the start or end with <code>^</code> and <code>$</code></li>
+      </ul>
+    </article>
+    <article class='emphasize-on-level-4'>
     <h3>Repeating Characters</h3>
-    <ul>
-      <li>Use <code>+</code> to repeat a character one or more times (e.g. match aaaaaa with <code>a+</code></li>
-      <li>Use <code>*</code> to repeat a character zero or more times (e.g. match aaaaaa or the empty string with <code>a+</code></li>
-      <li>Use <code>{n}</code> to repeat a character n times (e.g. match aaaaaa with <code>a{6}</code></li>
-    </ul>
-    <h3>Special Characters</h3>
-    <ul>
-      <li>Use <code>\d</code> to match any digit</li>
-      <li>Use <code>\X</code> to escape some character X (e.g. match $ with <code>\$</code>)</li>
-    </ul>
-    <h3>Character Classes</h3>
-    <ul>
-      <li><code>[xyz]</code> defines a character class, which means "one tile that contains either x or y or z"</li>
-      <li>Use a range within a character class (e.g. match abcd with <code>[a-d]</code>)</li>
-      <li>Common character class ranges: <code>A-Z</code>, <code>a-z</code>, <code>0-9</code></li>
-      <li>A character class can have several ranges (e.g. match any alphanumeric with <code>[A-Za-z0-9]</code></li>
-      <li>Use <code>^</code> inside square braces to negate a character class to match everything except (e.g. match efgh with <code>[^a-d]</code>)
-    </ul>
-    <button class='play-first-level'>Reset To The First Level</button>
+      <ul>
+        <li>Use <code>+</code> to repeat a character one or more times (e.g. match aaaaaa with <code>a+</code></li>
+        <li>Use <code>*</code> to repeat a character zero or more times (e.g. match aaaaaa or the empty string with <code>a+</code></li>
+        <li>Use <code>{n}</code> to repeat a character n times (e.g. match aaaaaa with <code>a{6}</code></li>
+      </ul>
+    </article>
+    <article class='emphasize-on-level-5 emphasize-on-level-6 emphasize-on-level-7'>
+      <h3>Special Characters</h3>
+      <ul>
+        <li>Use <code>\d</code> to match any digit</li>
+        <li>Use <code>\X</code> to escape some character X (e.g. match $ with <code>\$</code>)</li>
+      </ul>
+    </article>
+    <article class='emphasize-on-level-5 emphasize-on-level-6 emphasize-on-level-7'>
+      <h3>Character Classes</h3>
+      <ul>
+        <li><code>[xyz]</code> defines a character class, which means "one tile that contains either x or y or z"</li>
+        <li>Use a range within a character class (e.g. match abcd with <code>[a-d]</code>)</li>
+        <li>Common character class ranges: <code>A-Z</code>, <code>a-z</code>, <code>0-9</code></li>
+        <li>A character class can have several ranges (e.g. match any alphanumeric with <code>[A-Za-z0-9]</code></li>
+        <li>Use <code>^</code> inside square braces to negate a character class to match everything except (e.g. match efgh with <code>[^a-d]</code>)
+      </ul>
+    </article>
+    <article>
+      <button class='play-first-level'>Reset To The First Level</button>
+    </article>
   </section>
   <section class="game">
     <div class="timer"><div class="timer__slider"></div></div>

@@ -47,11 +47,36 @@ header h1 {
 
 .instructions {
   grid-area: instructions;
-  color: #09122C;
+  --initial-color: #09122C;
+  color: var(--initial-color);
   transition: color 0.3s ease;
 }
+
+.instructions article {
+  padding: 12px;
+  border-radius: 4px;
+  margin-top: -4px;
+}
+.instructions article > h2 {
+  margin-top: 4px;
+}
+
 .instructions:not(:hover) {
   color: #ABC;
+}
+
+.level-9 .instructions .emphasize-on-level-9,
+.level-8 .instructions .emphasize-on-level-8,
+.level-7 .instructions .emphasize-on-level-7,
+.level-6 .instructions .emphasize-on-level-6,
+.level-5 .instructions .emphasize-on-level-5,
+.level-4 .instructions .emphasize-on-level-4,
+.level-3 .instructions .emphasize-on-level-3,
+.level-2 .instructions .emphasize-on-level-2,
+.level-1 .instructions .emphasize-on-level-1,
+.level-0 .instructions .emphasize-on-level-0 {
+  color: #09122C;
+  background-color: #D4F6FF;
 }
 
 .game {

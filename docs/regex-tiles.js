@@ -8,6 +8,7 @@ function main() {
   document.body.style.setProperty('--tick-time', `${tickTime}s`);
   document.querySelector('.data__current-level').textContent = level;
   document.querySelector('.data__next-level').textContent = level + 1;
+  document.querySelector('body').classList.add(`level-${level}`);
   Array.from(document.querySelectorAll('.play-next-level')).forEach(x => x.addEventListener('click', playNextLevel));
   Array.from(document.querySelectorAll('.play-first-level')).forEach(x => x.addEventListener('click', playFirstLevel));
   let interval = startGameLoop();
