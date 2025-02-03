@@ -5,6 +5,10 @@ const { tilesPerTick, tickTime, numberOfPreGameTicks, letters, colors } = getGam
 const ENTER_KEY_CODE = 13;
 
 function main() {
+  setInterval(() => {
+    // TODO: remove this interval, we should not need it
+    console.log(getTimerPercentage());
+  }, 1000)
   document.body.style.setProperty('--tick-time', `${tickTime}s`);
   document.querySelector('.data__current-level').textContent = level;
   document.querySelector('.data__next-level').textContent = level + 1;
@@ -66,10 +70,8 @@ function onTick({ firstTick } = {}) {
   if (gameOver) {
     return;
   }
-  const timerSlider = document.querySelector('.timer__slider');
-  timerSlider.style.animation = 'none';
-  timerSlider.offsetHeight;
-  timerSlider.style.animation = null; 
+  resetAnimation(document.querySelector('.timer__slider'));
+  Array.from(document.querySelectorAll('.up-next__group')).forEach(resetAnimation);
   for (let i = 0; i < tilesPerTick; i++) {
     const column = pick(columns);
     const tile = document.createElement('div');
@@ -190,4 +192,16 @@ function getGameConfiguration() {
     return { ...baseConfigLevels7AndUp, colors: colorsSplit30To70 }
   }
   return { ...baseConfigLevels7AndUp, colors: colorsSplit30To60To10 }
+}
+
+function getTimerPercentage() {
+  const timer = document.querySelector('.timer').offsetWidth;
+  const timerSlider = document.querySelector('.timer__slider').offsetWidth;
+  return 25 * Math.ceil(Math.round(100 * timerSlider / timer) / 25);
+}
+
+function resetAnimation(element) {
+  element.style.animation = 'none';
+  element.offsetHeight;
+  element.style.animation = null; 
 }

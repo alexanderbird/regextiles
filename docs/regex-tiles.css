@@ -17,7 +17,7 @@
 :root {
   --square: 16px;
   --gap: 2px;
-  --rows: 28;
+  --rows: 24;
   --columns: 12;
   --column-width: calc(var(--square) + calc(5 * var(--gap)));
   --font-family-display: 'Goldman-Regular';
@@ -258,16 +258,63 @@ header h1 {
   border-radius: inherit;
   animation: var(--tick-time) timer linear;
 }
-.game--win .timer__slider {
+.timer__marker {
+  position: absolute;
+  height: var(--square);
+  width: 2px;
+  border-radius: 1px;
+  background-color: var(--color-accent-dim);
+}
+.timer__marker--p25 {
+  left: 25%;
+}
+.timer__marker--p50 {
+  left: 50%;
+}
+.timer__marker--p75 {
+  left: 75%;
+}
+.up-next {
+  display: flex;
+  width: calc(var(--columns) * var(--column-width));
+  margin-bottom: var(--square);
+  flex-direction: row;
+  justify-content: space-around;
+}
+.up-next__group {
+  margin: 0 auto;
+}
+.up-next__group--p50 {
+  animation: var(--tick-time) timer-p50 linear;
+}
+.up-next__group--p75 {
+  animation: var(--tick-time) timer-p75 linear;
+}
+.up-next__group--p100 {
+  animation: var(--tick-time) timer-p100 linear;
+}
+.game--win .timer__slider,
+.game--win .up-next__group {
   animation: none;
 }
 @keyframes timer {
-  from {
-    width: 100%;
-  }
-  to {
-    width: 0;
-  }
+  from { width: 0; }
+  to { width: 100%; }
+}
+@keyframes timer-p50 {
+  0% { opacity: 0; }
+  25% { opacity: 0; }
+  26% { opacity: 1; }
+}
+@keyframes timer-p75 {
+  0% { opacity: 0; }
+  50% { opacity: 0; }
+  51% { opacity: 1; }
+}
+@keyframes timer-p100 {
+  0% { opacity: 0; }
+  75% { opacity: 0; }
+  76% { opacity: 1; }
 }
 .input {
   font-size: 32px;
