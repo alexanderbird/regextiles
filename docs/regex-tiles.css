@@ -305,9 +305,6 @@ header h1 {
   border-radius: 1px;
   background-color: var(--color-accent-dim);
 }
-.game--over .timer__slider {
-  animation: none;
-}
 .timer__marker--p25 {
   left: 25%;
 }
@@ -342,8 +339,8 @@ header h1 {
 .up-next__group--p100 {
   animation: var(--tick-time) timer-p100 linear;
 }
-.game--win .timer__slider,
-.game--win .up-next__group {
+.game--over .timer__slider,
+.game--over .up-next__group {
   animation: none;
 }
 @keyframes timer {
