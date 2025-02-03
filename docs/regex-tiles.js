@@ -1,5 +1,6 @@
 window.addEventListener('DOMContentLoaded', main);
 const level = Number(window.localStorage.getItem('level') || 0)
+const columnHeightForGameOver = 15;
 const { tilesPerTick, tickTime, numberOfStartingTiles, letters, colors } = getGameConfiguration();
 
 const ENTER_KEY_CODE = 13;
@@ -10,6 +11,7 @@ function main() {
   document.querySelector('.data__next-level').textContent = level + 1;
   document.querySelector('body').classList.add(`level-${level}`);
   Array.from(document.querySelectorAll('.play-next-level')).forEach(x => x.addEventListener('click', playNextLevel));
+  Array.from(document.querySelectorAll('.play-this-level-again')).forEach(x => x.addEventListener('click', () => window.location.reload()));
   Array.from(document.querySelectorAll('.play-first-level')).forEach(x => x.addEventListener('click', playFirstLevel));
   initializeUpNextSections();
   let interval = startGameLoop();
@@ -26,9 +28,13 @@ function main() {
 }
 
 function startGameLoop() {
-  return setInterval(() => {
+  const interval = setInterval(() => {
     onTick({ timerPercentage: 100 });
+    if (isGameOver()) {
+      clearInterval(interval);
+    }
   }, tickTime * 1000);
+  return interval;
 }
 
 
@@ -70,8 +76,8 @@ function onTick({ timerPercentage }) {
     + (timerPercentage >= 25 ? tilesPerTick.p50 : 0)
     + (timerPercentage >= 50 ? tilesPerTick.p75 : 0)
     + (timerPercentage >= 75 ? tilesPerTick.p100 : 0);
-  console.log({ timerPercentage, tilesToAdd, tilesPerTick });
   addTiles(tilesToAdd);
+  isGameOver();
 }
 
 function addTiles(count) {
@@ -130,12 +136,25 @@ function playFirstLevel() {
 }
 
 function isGameOver() {
+  const gameElement = document.querySelector('.game');
   const gameIsWon = !document.querySelector('.board .tile');
   if (gameIsWon) {
-    document.querySelector('.game').classList.add('game--win');
+    gameElement.classList.add('game--win');
+    gameElement.classList.add('game--over');
+    return true;
   }
 
-  return gameIsWon;
+  const gameIsLost = !!document.querySelector(`.board .board__column .tile:nth-child(${columnHeightForGameOver})`);
+  if (gameIsLost) {
+    gameElement.classList.add('game--lose');
+    gameElement.classList.add('game--over');
+    return true;
+  }
+
+  return false;
+}
+
+function isGameLost() {
 }
 
 function getGameConfiguration() {
