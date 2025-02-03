@@ -43,6 +43,7 @@
         <li>If you match more than one color, your match is invalid</li>
         <li>Your regex is applied when the timer expires or when you press Enter</li>
         <li>Your regex is applied with the "g" (global) flag so it can match multiple parts of the line</li>
+        <li>The sooner you press Enter, the fewer new tiles you'll get</li>
       </ul>
     </article>
     <h2
@@ -99,17 +100,16 @@
   </section>
   <section class="game">
     <div class="timer">
-      <div class="timer__slider">
-      </div>
+      <div class="timer__slider"></div>
       <div class='timer__marker timer__marker--p25'></div>
       <div class='timer__marker timer__marker--p50'></div>
       <div class='timer__marker timer__marker--p75'></div>
     </div>
     <div class="up-next">
-      <div class='up-next__group up-next__group--p25'>X</div>
-      <div class='up-next__group up-next__group--p50'>X</div>
-      <div class='up-next__group up-next__group--p75'>X</div>
-      <div class='up-next__group up-next__group--p100'>X</div>
+      <div class='up-next__group up-next__group--p25'></div>
+      <div class='up-next__group up-next__group--p50'></div>
+      <div class='up-next__group up-next__group--p75'></div>
+      <div class='up-next__group up-next__group--p100'></div>
     </div>
     <div class="board">
       <div class="board__column"></div>

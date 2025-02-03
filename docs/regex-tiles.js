@@ -1,29 +1,25 @@
 window.addEventListener('DOMContentLoaded', main);
 const level = Number(window.localStorage.getItem('level') || 0)
-const { tilesPerTick, tickTime, numberOfPreGameTicks, letters, colors } = getGameConfiguration();
+const { tilesPerTick, tickTime, numberOfStartingTiles, letters, colors } = getGameConfiguration();
 
 const ENTER_KEY_CODE = 13;
 
 function main() {
-  setInterval(() => {
-    // TODO: remove this interval, we should not need it
-    console.log(getTimerPercentage());
-  }, 1000)
   document.body.style.setProperty('--tick-time', `${tickTime}s`);
   document.querySelector('.data__current-level').textContent = level;
   document.querySelector('.data__next-level').textContent = level + 1;
   document.querySelector('body').classList.add(`level-${level}`);
   Array.from(document.querySelectorAll('.play-next-level')).forEach(x => x.addEventListener('click', playNextLevel));
   Array.from(document.querySelectorAll('.play-first-level')).forEach(x => x.addEventListener('click', playFirstLevel));
+  initializeUpNextSections();
   let interval = startGameLoop();
-  for (let i = 0; i < numberOfPreGameTicks; i++) {
-    onTick({ firstTick: true });
-  }
+  addTiles(numberOfStartingTiles);
   document.querySelector('.input input').addEventListener('keyup', event => {
     if (event.keyCode === ENTER_KEY_CODE) {
       clearInterval(interval);
       interval = startGameLoop();
-      onTick();
+      const timerPercentage = getTimerPercentage();
+      onTick({ timerPercentage });
     }
     onInputChange();
   });
@@ -31,7 +27,7 @@ function main() {
 
 function startGameLoop() {
   return setInterval(() => {
-    onTick();
+    onTick({ timerPercentage: 100 });
   }, tickTime * 1000);
 }
 
@@ -55,9 +51,7 @@ function getMatchedTiles() {
   return { matchedTiles: [], matchedColors: [] };
 }
 
-function onTick({ firstTick } = {}) {
-  const columns = Array.from(document.querySelectorAll('.board__column'));
-
+function onTick({ timerPercentage }) {
   const { matchedColors, matchedTiles } = getMatchedTiles();
   if (matchedColors.length === 1) {
     matchedTiles.forEach(({ column, tile }) => column.removeChild(tile));
@@ -65,14 +59,24 @@ function onTick({ firstTick } = {}) {
     onInputChange();
   }
 
-  const gameOver = !firstTick && checkForEndGame();
-
-  if (gameOver) {
+  if (isGameOver()) {
     return;
   }
+
   resetAnimation(document.querySelector('.timer__slider'));
   Array.from(document.querySelectorAll('.up-next__group')).forEach(resetAnimation);
-  for (let i = 0; i < tilesPerTick; i++) {
+  const tilesToAdd = 
+    tilesPerTick.p25
+    + (timerPercentage >= 25 ? tilesPerTick.p50 : 0)
+    + (timerPercentage >= 50 ? tilesPerTick.p75 : 0)
+    + (timerPercentage >= 75 ? tilesPerTick.p100 : 0);
+  console.log({ timerPercentage, tilesToAdd, tilesPerTick });
+  addTiles(tilesToAdd);
+}
+
+function addTiles(count) {
+  const columns = Array.from(document.querySelectorAll('.board__column'));
+  for (let i = 0; i < count; i++) {
     const column = pick(columns);
     const tile = document.createElement('div');
     tile.classList.add('tile');
@@ -125,8 +129,8 @@ function playFirstLevel() {
   window.location.reload();
 }
 
-function checkForEndGame() {
-  const gameIsWon = !document.querySelector('.tile');
+function isGameOver() {
+  const gameIsWon = !document.querySelector('.board .tile');
   if (gameIsWon) {
     document.querySelector('.game').classList.add('game--win');
   }
@@ -142,27 +146,26 @@ function getGameConfiguration() {
   const colorsSplit30To70 = [COLOR_1, COLOR_1, COLOR_1, COLOR_1, COLOR_1, COLOR_1, COLOR_1, COLOR_2, COLOR_2, COLOR_2];
   const colorsSplit30To60To10 = [COLOR_3, COLOR_1, COLOR_1, COLOR_1, COLOR_1, COLOR_1, COLOR_1, COLOR_2, COLOR_2, COLOR_2];
   const baseConfigLevels1To3 = {
-    tilesPerTick: 2,
     tickTime: 20,
-    numberOfPreGameTicks: 6,
+    numberOfStartingTiles: 18,
     letters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
   }
   if (level === 0) {
-    return { ...baseConfigLevels1To3, tilesPerTick: 1, colors: [COLOR_1] };
+    return { ...baseConfigLevels1To3, tilesPerTick: { p25: 1, p50: 1, p75: 0, p100: 0 }, colors: [COLOR_1] };
   }
   if (level === 1) {
-    return { ...baseConfigLevels1To3, tilesPerTick: 1, colors: [COLOR_1, COLOR_2] };
+    return { ...baseConfigLevels1To3, tilesPerTick: { p25: 1, p50: 1, p75: 0, p100: 0 }, colors: [COLOR_1, COLOR_2] };
   }
-  if (level === 2) {
-    return { ...baseConfigLevels1To3, colors: colorsSplit25To75 };
+  if (level === 2) { 
+    return { ...baseConfigLevels1To3, tilesPerTick: { p25: 1, p50: 1, p75: 1, p100: 0 }, colors: colorsSplit25To75 };
   }
   if (level === 3) {
-    return { ...baseConfigLevels1To3, colors: colorsSplit25To75 };
+    return { ...baseConfigLevels1To3, tilesPerTick: { p25: 1, p50: 1, p75: 1, p100: 0 }, colors: colorsSplit25To75 };
   }
   const baseConfigLevels4To6 = {
-    tilesPerTick: 3,
+    tilesPerTick: { p25: 1, p50: 1, p75: 1, p100: 1 },
     tickTime: 18,
-    numberOfPreGameTicks: 5,
+    numberOfStartingTiles: 15,
     colors: colorsSplit25To75
   }
   if (level === 4) {
@@ -183,9 +186,9 @@ function getGameConfiguration() {
     return { ...baseConfigLevels4To6, letters: advancedLetters };
   }
   const baseConfigLevels7AndUp = {
-    tilesPerTick: 3,
+    tilesPerTick: { p25: 1, p50: 1, p75: 1, p100: 1 },
     tickTime: Math.max(10, 23 - level),
-    numberOfPreGameTicks: level,
+    numberOfStartingTiles: level * 3,
     letters: advancedLetters,
   }
   if (level === 7 || level === 8) {
@@ -197,11 +200,28 @@ function getGameConfiguration() {
 function getTimerPercentage() {
   const timer = document.querySelector('.timer').offsetWidth;
   const timerSlider = document.querySelector('.timer__slider').offsetWidth;
-  return 25 * Math.ceil(Math.round(100 * timerSlider / timer) / 25);
+  return Math.round(100 * timerSlider / timer);
 }
 
 function resetAnimation(element) {
   element.style.animation = 'none';
   element.offsetHeight;
   element.style.animation = null; 
+}
+
+function initializeUpNextSections() {
+  initializeUpNextSection('p25', tilesPerTick.p25);
+  initializeUpNextSection('p50', tilesPerTick.p50);
+  initializeUpNextSection('p75', tilesPerTick.p75);
+  initializeUpNextSection('p100', tilesPerTick.p100);
+}
+
+function initializeUpNextSection(name, count) {
+  const container = document.querySelector(`.up-next__group--${name}`);
+  for (let i = 0; i < count; i++) {
+    const shadow = document.createElement('div');
+    shadow.classList.add('tile');
+    shadow.classList.add('tile--shadow');
+    container.appendChild(shadow);
+  }
 }

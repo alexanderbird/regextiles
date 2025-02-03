@@ -165,6 +165,10 @@ header h1 {
 .tile--new {
   margin-bottom: calc(var(--rows) * var(--square));
 }
+.tile--shadow {
+  background-color: var(--color-accent-transparent);
+  border: 2px solid var(--color-accent-dim);
+}
 .board {
   border: 2px solid var(--color-accent-dim);
   border-radius: 4px;
@@ -244,7 +248,7 @@ header h1 {
 }
 .timer {
   height: var(--square);
-  margin: var(--square) 0;
+  margin: var(--square) 0 calc(0.5 * var(--square)) 0;
   width: calc(var(--columns) * var(--column-width));
   position: relative;
   border-radius: var(--square);
@@ -280,9 +284,15 @@ header h1 {
   margin-bottom: var(--square);
   flex-direction: row;
   justify-content: space-around;
+  --square: 8px;
 }
 .up-next__group {
+  flex: 1;
   margin: 0 auto;
+  --disabled-opacity: 0.2;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 .up-next__group--p50 {
   animation: var(--tick-time) timer-p50 linear;
@@ -302,18 +312,18 @@ header h1 {
   to { width: 100%; }
 }
 @keyframes timer-p50 {
-  0% { opacity: 0; }
-  25% { opacity: 0; }
+  0% { opacity: var(--disabled-opacity); }
+  25% { opacity: var(--disabled-opacity); }
   26% { opacity: 1; }
 }
 @keyframes timer-p75 {
-  0% { opacity: 0; }
-  50% { opacity: 0; }
+  0% { opacity: var(--disabled-opacity); }
+  50% { opacity: var(--disabled-opacity); }
   51% { opacity: 1; }
 }
 @keyframes timer-p100 {
-  0% { opacity: 0; }
-  75% { opacity: 0; }
+  0% { opacity: var(--disabled-opacity); }
+  75% { opacity: var(--disabled-opacity); }
   76% { opacity: 1; }
 }
 .input {
