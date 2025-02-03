@@ -157,13 +157,13 @@ function getGameConfiguration() {
     return { ...baseConfigLevels1To3, tilesPerTick: { p25: 1, p50: 1, p75: 0, p100: 0 }, colors: [COLOR_1, COLOR_2] };
   }
   if (level === 2) { 
-    return { ...baseConfigLevels1To3, tilesPerTick: { p25: 1, p50: 1, p75: 1, p100: 0 }, colors: colorsSplit25To75 };
+    return { ...baseConfigLevels1To3, tilesPerTick: { p25: 2, p50: 0, p75: 1, p100: 0 }, colors: colorsSplit25To75 };
   }
   if (level === 3) {
-    return { ...baseConfigLevels1To3, tilesPerTick: { p25: 1, p50: 1, p75: 1, p100: 0 }, colors: colorsSplit25To75 };
+    return { ...baseConfigLevels1To3, tilesPerTick: { p25: 2, p50: 0, p75: 1, p100: 0 }, colors: colorsSplit25To75 };
   }
   const baseConfigLevels4To6 = {
-    tilesPerTick: { p25: 1, p50: 1, p75: 1, p100: 1 },
+    tilesPerTick: { p25: 2, p50: 1, p75: 1, p100: 1 },
     tickTime: 18,
     numberOfStartingTiles: 15,
     colors: colorsSplit25To75
@@ -186,7 +186,7 @@ function getGameConfiguration() {
     return { ...baseConfigLevels4To6, letters: advancedLetters };
   }
   const baseConfigLevels7AndUp = {
-    tilesPerTick: { p25: 1, p50: 1, p75: 1, p100: 1 },
+    tilesPerTick: { p25: 2, p50: 2, p75: 1, p100: 1 },
     tickTime: Math.max(10, 23 - level),
     numberOfStartingTiles: level * 3,
     letters: advancedLetters,
