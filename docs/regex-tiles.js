@@ -133,9 +133,9 @@ function checkForEndGame() {
 }
 
 function getGameConfiguration() {
-  const COLOR_1 = { id: 1, foreground: '#FFFEF8', background: '#AF47D2' };
-  const COLOR_2 = { id: 2, foreground: '#5D0E41', background: '#FF8F00' };
-  const COLOR_3 = { id: 3, foreground: '#EAFAEA', background: '#780C28' };
+  const COLOR_1 = { id: 1, background: '#1D2B53', foreground: '#FAEF5D' };
+  const COLOR_2 = { id: 2, background: '#FF6500', foreground: '#173B45' };
+  const COLOR_3 = { id: 3, background: '#EA047E', foreground: '#181C14' };
   const colorsSplit25To75 = [COLOR_1, COLOR_1, COLOR_1, COLOR_2];
   const colorsSplit30To70 = [COLOR_1, COLOR_1, COLOR_1, COLOR_1, COLOR_1, COLOR_1, COLOR_1, COLOR_2, COLOR_2, COLOR_2];
   const colorsSplit30To60To10 = [COLOR_3, COLOR_1, COLOR_1, COLOR_1, COLOR_1, COLOR_1, COLOR_1, COLOR_2, COLOR_2, COLOR_2];

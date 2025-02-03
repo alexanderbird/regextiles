@@ -14,12 +14,33 @@
     url("./fonts/ScopeOne-Regular.woff2") format("woff");
 }
 
-body {
-  --square: 12px;
+:root {
+  --square: 16px;
   --gap: 2px;
-  --rows: 32;
+  --rows: 28;
   --columns: 12;
   --column-width: calc(var(--square) + calc(5 * var(--gap)));
+  --font-family-display: 'Goldman-Regular';
+  --font-family-serif: 'ScopeOne-Regular';
+  --font-family-mono: 'JetBrainsMono-Regular';
+  --color-accent: #FFEB00;
+  --color-accent-dim: #5E5600;
+  --color-accent-transparent: color-mix(in srgb, var(--color-accent-dim), transparent 80%);
+  --color-background: #000;
+  --color-background-emphasis: #FFF1;
+  --color-foreground: #FFF;
+  --color-foreground-deemphasis: #AAA;
+  --color-error: #A0153E;
+  --color-success: #059212;
+  --color-background-accent: #00224D;
+}
+
+html {
+  background-color: var(--color-background);
+  background: linear-gradient(to top, var(--color-background) 80%, #393901);
+}
+
+body {
   min-height: 100vh;
   display: grid;
   grid-template-areas:
@@ -30,12 +51,11 @@ body {
     'footer';
   grid-template-rows: auto auto 50px auto auto;
   grid-template-columns: auto;
-  --font-family-display: 'Goldman-Regular';
-  --font-family-serif: 'ScopeOne-Regular';
-  --font-family-mono: 'JetBrainsMono-Regular';
   font-family: var(--font-family-serif), serif;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 24px;
+  color: var(--color-accent);
 }
 
 @media (min-width: 700px) {
@@ -68,7 +88,7 @@ footer {
   margin: 12px;
   grid-area: footer;
   text-align: center;
-  color: #69247C;
+  color: var(--color-foreground-deemphasis);
 }
 
 header h1 {
@@ -77,8 +97,7 @@ header h1 {
 
 .instructions {
   grid-area: instructions;
-  --initial-color: #09122C;
-  color: var(--initial-color);
+  color: var(--color-foreground-deemphasis);
   transition: color 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -93,14 +112,9 @@ header h1 {
 .instructions article {
   padding: 12px;
   border-radius: 4px;
-  margin-top: -4px;
 }
 .instructions article > h3 {
   margin-top: 4px;
-}
-
-.instructions:not(:hover) {
-  color: #ABC;
 }
 
 .level-9 .instructions .emphasize-on-level-9,
@@ -113,8 +127,8 @@ header h1 {
 .level-2 .instructions .emphasize-on-level-2,
 .level-1 .instructions .emphasize-on-level-1,
 .level-0 .instructions .emphasize-on-level-0 {
-  color: #09122C;
-  background-color: #D4F6FF;
+  color: var(--color-foreground);
+  background-color: var(--color-background-emphasis);
   order: -1;
 }
 
@@ -145,12 +159,14 @@ header h1 {
   background-color: var(--color-background);
   color: var(--color-foreground);
   transition: margin-bottom 1s;
+  font-family: var(--font-family-mono), monospace;
+  font-weight: 900;
 }
 .tile--new {
   margin-bottom: calc(var(--rows) * var(--square));
 }
 .board {
-  border: 2px solid #222;
+  border: 2px solid var(--color-accent-dim);
   border-radius: 4px;
   height: calc(var(--square) * var(--rows));
   width: auto;
@@ -160,8 +176,11 @@ header h1 {
   position: relative;
   overflow: hidden;
 }
+.game--too-many-colors .board {
+  background-color: color-mix(in srgb, var(--color-error), transparent 90%);
+}
 .game--win .board {
-  background-color: #B0C5A4;
+  background-color: color-mix(in srgb, var(--color-success), transparent 60%);
 }
 .game--win .board__column {
   display: none;
@@ -182,11 +201,11 @@ header h1 {
   --button-size: 24px;
 }
 .board__you-win button.play-next-level {
-  background-color: #69247C;
+  background-color: var(--color-background-accent);
   color: white;
 }
 .board__you-win button.play-next-level:hover {
-  background-color: #59146C;
+  background-color: color-mix(in srgb, var(--color-background-accent), var(--color-background) 30%);
 }
 .board__you-win > *:first-child {
   margin-top: auto;
@@ -217,10 +236,10 @@ header h1 {
   border-radius: 2px;
 }
 .board__column--selected:after {
-  --underline-color: #00FFD1;
+  --underline-color: var(--color-accent);
 }
 .game--too-many-colors .board__column--selected:after {
-  --underline-color: #F0153E;
+  --underline-color: var(--color-error);
 }
 .timer {
   height: var(--square);
@@ -228,13 +247,13 @@ header h1 {
   width: calc(var(--columns) * var(--column-width));
   position: relative;
   border-radius: var(--square);
-  background-color: #2222;
+  background-color: var(--color-accent-transparent);
 }
 .timer__slider {
   content: '';
   position: absolute;
   height: 100%;
-  background-color: #07479999;
+  background-color: var(--color-accent-dim);
   border-radius: inherit;
   animation: var(--tick-time) timer linear;
 }
@@ -256,37 +275,40 @@ header h1 {
   font-family: var(--font-family-mono), monospace;
   display: flex;
   flex-direction: row;
+  color: var(--color-accent-dim);
+  margin-top: 12px;
 }
 .input:before {
   content: '/';
-  color: gray;
   display: block;
 }
 .input:after {
   content: '/g';
-  color: gray;
   display: block;
 }
 .input input {
   border-top: 0;
   border-right: 0;
   border-left: 0;
+  border-color: var(--color-accent-dim);
   outline: 0;
   width: 5em;
   font-family: inherit;
   background-color: transparent;
   font-size: inherit;
+  color: var(--color-accent);
 }
 .input input:focus {
-  border-color: blue;
+  background-color: var(--color-accent-transparent);
+  border-color: var(--color-accent);
 }
 .game.game--too-many-colors .input {
-  background-color: #A0153E22
+  background-color: color-mix(in srgb, var(--color-error), transparent 70%);
 }
 
 code {
-  background-color: #FAF6E3;
-  padding: 2px;
+  background-color: var(--color-accent-transparent);
+  padding: 2px 6px;
   border-radius: 4px;
   font-family: var(--font-family-mono), monospace;
 }
