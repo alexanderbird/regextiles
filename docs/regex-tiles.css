@@ -1,17 +1,25 @@
 @font-face {
   font-family: "Goldman-Regular";
-  src:
-    url("./fonts/Goldman-Regular.woff2") format("woff");
+  src: url("./fonts/Goldman-Regular.woff2") format("woff");
 }
 @font-face {
   font-family: "JetBrainsMono-Regular";
-  src:
-    url("./fonts/JetBrainsMono-Regular.woff2") format("woff");
+  src: url("./fonts/JetBrainsMono-Regular.woff2") format("woff");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "JetBrainsMono-Bold";
+  src: url("./fonts/JetBrainsMono-Bold.woff2") format("woff");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "JetBrainsMono-ExtraBold";
+  src: url("./fonts/JetBrainsMono-ExtraBold.woff2") format("woff");
+  font-weight: 900;
 }
 @font-face {
   font-family: "ScopeOne-Regular";
-  src:
-    url("./fonts/ScopeOne-Regular.woff2") format("woff");
+  src: url("./fonts/ScopeOne-Regular.woff2") format("woff");
 }
 
 :root {
