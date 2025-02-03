@@ -195,6 +195,7 @@ header h1 {
   justify-content: center;
   align-items: center;
   font-size: 24px;
+  font-family: var(--font-family-display), sans-serif;
 }
 .board__you-win button {
   margin-top: 36px;
@@ -319,4 +320,5 @@ button {
   padding: calc(0.5 * var(--this-button-size)) var(--this-button-size);
   font-size: var(--this-button-size);
   cursor: pointer;
+  font-family: var(--font-family-display), sans-serif;
 }
