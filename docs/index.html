@@ -33,7 +33,29 @@
     <p>Eliminate the falling tiles in real-time with your sweet RegEx skills.</p>
   </header>
   <section class="instructions">
-    <article class='emphasize-on-level-0'>
+    <article class='selectively-show selectively-show--on-level-0 emphasize-on-level-0'>
+      <h2>Tutorial</h2>
+      <ul>
+        <li>Try typing <code>.</code> and then press Enter</li>
+        <li>The yellow lines below the tiles show what will be matched by your regex</li>
+        <li>For level 0, there <b>is only one color of tile</b> so you can match every character.</li>
+        <li>The regex wildcard (<code>.</code>) matches one of anything.</li>
+        <li>Your regex is applied with the "g" (global) flag, so it matches as many times as possible. A single period will match the entire bottom row.</li>
+      </ul>
+    </article>
+    <article class='selectively-show selectively-show--on-level-1 emphasize-on-level-1'>
+      <h2>Tutorial</h2>
+      <ul>
+        <li>There are now two colors</li>
+        <li>Your regex will only work if you match one color</li>
+        <li>Try typing one letter and pressing Enter</li>
+        <li>Every time you press Enter (or the timer expires), you get more letters</li>
+        <li>Try typing all the letters of one color, joined by <code>|</code>. For example, <code>A|N|K</code></li>
+        <li>For letters that show up in both colors, target one of them by typing a sequence of letters that only appears in one color</li>
+        <li>You might want to match everything except certain letters. Use <code>[^XYZ]</code> to match everything <i>except</i> X, Y, or Z</li>
+      </ul>
+    </article>
+    <article class='emphasize-on-level-0 emphasize-on-level-1 emphasize-on-level-2'>
       <h2>Gameplay</h2>
       <ul>
         <li>Type some RegEx to match tiles</li>
