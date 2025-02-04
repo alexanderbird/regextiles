@@ -60,7 +60,7 @@ function getMatchedTiles() {
     const matchedColors = Array.from(new Set(matchedTiles.map(x => x.tile.dataset.color)));
     return { matchedTiles, matchedColors, matchDetails };
   }
-  return { matchedTiles: [], matchedColors: [] };
+  return { matchedTiles: [], matchedColors: [], matchDetails: [] };
 }
 
 function onTick({ timerPercentage }) {
