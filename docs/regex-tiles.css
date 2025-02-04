@@ -262,6 +262,7 @@ header h1 {
   --underline-unit: 4px;
   margin-bottom: calc(2 * var(--underline-unit));
 }
+.board__column--continued-selection:before,
 .board__column:after {
   content: '';
   position: absolute;
@@ -275,9 +276,14 @@ header h1 {
   right: 0;
   border-radius: 2px;
 }
+.board__column--continued-selection:before {
+  left: -100%;
+}
+.board__column--selected:before,
 .board__column--selected:after {
   --underline-color: var(--color-accent);
 }
+.game--too-many-colors .board__column--selected:before,
 .game--too-many-colors .board__column--selected:after {
   --underline-color: var(--color-error);
 }

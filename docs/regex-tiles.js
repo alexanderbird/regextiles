@@ -108,7 +108,10 @@ function addTiles(count) {
 }
 
 function onInputChange() {
-  Array.from(document.querySelectorAll('.board__column')).forEach(column => column.classList.remove('board__column--selected'));
+  Array.from(document.querySelectorAll('.board__column')).forEach(column => {
+    column.classList.remove('board__column--selected')
+    column.classList.remove('board__column--continued-selection')
+  });
   document.querySelector('.game').classList.remove('game--too-many-colors');
   const { matchedTiles, matchedColors, matchDetails } = getMatchedTiles();
   if (matchedColors.length > 1) {
