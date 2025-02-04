@@ -93,10 +93,13 @@
     <article class='emphasize-on-level-2 emphasize-on-level-3 emphasize-on-level-4'>
       <h3>Avoiding Certain Tiles</h3>
       <ul>
-        <li>Use spaces to pinpoint a specific letter (e.g. use <code> A</code> to match an "A" that has no tile before it)</li>
-        <li>You can match a sequence of letters by typing them all out</li>
-        <li>You can match "any character except x or y" with the regex <code>[^xy]</code></li>
-        <li>You can match characters relative to the start or end with <code>^</code> and <code>$</code></li>
+        <li>Use <code>[^XY]</code> to match any character except X and Y</li>
+        <li>Use <code>^A</code> to match A only if it comes directly after the <b>start of the line</b></li>
+        <li>Use <code>A$</code> to match A only if it comes directly before the <b>end of the line</b></li>
+        <li>Use <code>A(?=X)</code> to match A only if it is <b>followed by X</b></li>
+        <li>Use <code>A(?!X)</code> to match A only if it is <b>not followed by X</b></li>
+        <li>Use <code>(?&lt;=X)A</code> to match A only if it is <b>preceded by X</b></li>
+        <li>Use <code>(?&lt;!X)A</code> to match A only if it is <b>not preceded by X</b></li>
       </ul>
     </article>
     <article class='emphasize-on-level-4'>

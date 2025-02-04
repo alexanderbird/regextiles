@@ -45,7 +45,7 @@ function getMatchedTiles() {
     const bottomRow = columns.map(x => x.querySelector('.tile')?.textContent || ' ').join('');
     let matches = Array.from(bottomRow.matchAll(regex));
     const matchIndices = matches
-      .map(x => x.toString().split('').map((_, i) => ({ columnIndex: x.index + i, indexWithinMatch: i })))
+      .map(matchData => matchData[0].toString().split('').map((_, i) => ({ columnIndex: matchData.index + i, indexWithinMatch: i })))
       .flat();
     
     const matchDetails = matchIndices
