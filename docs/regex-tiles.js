@@ -45,14 +45,20 @@ function getMatchedTiles() {
     const bottomRow = columns.map(x => x.querySelector('.tile')?.textContent || ' ').join('');
     let matches = Array.from(bottomRow.matchAll(regex));
     const matchIndices = matches
-      .map(x => x.toString().split('').map((_, i) => x.index + i))
+      .map(x => x.toString().split('').map((_, i) => ({ columnIndex: x.index + i, indexWithinMatch: i })))
       .flat();
-    const matchedTiles = matchIndices
-      .map(index => ({ column: columns[index], tile: columns[index].querySelector('.tile') }))
-      .filter(x => !!x.tile);
+    
+    const matchDetails = matchIndices
+      .map(index => ({
+        indexWithinMatch: index.indexWithinMatch,
+        column: columns[index.columnIndex],
+        tile: columns[index.columnIndex].querySelector('.tile')
+      }))
+
+    const matchedTiles = matchDetails.filter(x => !!x.tile);
 
     const matchedColors = Array.from(new Set(matchedTiles.map(x => x.tile.dataset.color)));
-    return { matchedTiles, matchedColors };
+    return { matchedTiles, matchedColors, matchDetails };
   }
   return { matchedTiles: [], matchedColors: [] };
 }
@@ -104,12 +110,15 @@ function addTiles(count) {
 function onInputChange() {
   Array.from(document.querySelectorAll('.board__column')).forEach(column => column.classList.remove('board__column--selected'));
   document.querySelector('.game').classList.remove('game--too-many-colors');
-  const { matchedTiles, matchedColors } = getMatchedTiles();
+  const { matchedTiles, matchedColors, matchDetails } = getMatchedTiles();
   if (matchedColors.length > 1) {
     document.querySelector('.game').classList.add('game--too-many-colors');
   }
-  matchedTiles.forEach(({ tile, column }) => {
+  matchDetails.forEach(({ column, indexWithinMatch }) => {
     column.classList.add('board__column--selected');
+    if (indexWithinMatch > 0) {
+      column.classList.add('board__column--continued-selection');
+    }
   });
 }
 
