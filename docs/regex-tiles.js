@@ -7,8 +7,8 @@ const ENTER_KEY_CODE = 13;
 
 function main() {
   document.body.style.setProperty('--tick-time', `${tickTime}s`);
-  document.querySelector('.data__current-level').textContent = level;
-  document.querySelector('.data__next-level').textContent = level + 1;
+  Array.from(document.querySelectorAll('.data__current-level')).map(x => x.textContent = level);
+  Array.from(document.querySelectorAll('.data__next-level')).map(x => x.textContent = level + 1);
   document.querySelector('body').classList.add(`level-${level}`);
   Array.from(document.querySelectorAll('.play-next-level')).forEach(x => x.addEventListener('click', playNextLevel));
   Array.from(document.querySelectorAll('.play-this-level-again')).forEach(x => x.addEventListener('click', () => window.location.reload()));
