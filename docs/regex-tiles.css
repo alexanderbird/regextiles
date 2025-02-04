@@ -370,10 +370,12 @@ header h1 {
 .input {
   font-size: 32px;
   padding: 12px;
+  width: calc(var(--columns) * var(--column-width));
   border-radius: 8px;
   font-family: var(--font-family-mono), monospace;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   color: var(--color-accent-dim);
   margin-top: 12px;
 }
@@ -391,7 +393,7 @@ header h1 {
   border-left: 0;
   border-color: var(--color-accent-dim);
   outline: 0;
-  width: 5em;
+  width: calc(100% - 2em);
   font-family: inherit;
   background-color: transparent;
   font-size: inherit;
