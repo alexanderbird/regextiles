@@ -225,7 +225,29 @@ function getGameConfiguration() {
   if (level === 7 || level === 8) {
     return { ...baseConfigLevels7AndUp, colors: colorsSplit30To70 }
   }
-  return { ...baseConfigLevels7AndUp, colors: colorsSplit30To60To10 }
+  if (level === 9 || level === 10) {
+    return { ...baseConfigLevels7AndUp, colors: colorsSplit30To60To10
+    }
+  }
+  if (level === 11 || level === 12) {
+    return {
+      ...baseConfigLevels7AndUp,
+      tilesPerTick: { p25: 2, p50: 2, p75: 2, p100: 1 },
+      colors: colorsSplit30To60To10
+    }
+  }
+  if (level < 15) {
+    return {
+      ...baseConfigLevels7AndUp,
+        tilesPerTick: { p25: 2, p50: 2, p75: 2, p100: 2 },
+      colors: colorsSplit30To60To10
+    }
+  }
+  return {
+    ...baseConfigLevels7AndUp,
+      tilesPerTick: { p25: 3, p50: 2, p75: 2, p100: 2 },
+    colors: colorsSplit30To60To10
+  }
 }
 
 function getTimerPercentage() {
