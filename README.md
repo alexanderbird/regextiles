@@ -20,3 +20,6 @@ That's it.
 The site is in the "docs" folder because it's deployed with GitHub Pages which
 seems to only accept a folder named "docs".
 
+## Licenses
+
+See font Copyright notices in ./fonts.

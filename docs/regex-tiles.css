@@ -2,21 +2,49 @@
   font-family: "Goldman-Regular";
   src: url("./fonts/Goldman-Regular.woff2") format("woff");
 }
+
 @font-face {
-  font-family: "JetBrainsMono-Regular";
-  src: url("./fonts/JetBrainsMono-Regular.woff2") format("woff");
+  font-family: "AtkinsonHyperlegibleMono";
+  src: url("./fonts/AtkinsonHyperlegibleMono-ExtraLight.woff2") format("woff");
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: "AtkinsonHyperlegibleMono";
+  src: url("./fonts/AtkinsonHyperlegibleMono-Light.woff2") format("woff");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "AtkinsonHyperlegibleMono";
+  src: url("./fonts/AtkinsonHyperlegibleMono-Medium.woff2") format("woff");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "AtkinsonHyperlegibleMono";
+  src: url("./fonts/AtkinsonHyperlegibleMono-Regular.woff2") format("woff");
   font-weight: 500;
 }
+
 @font-face {
-  font-family: "JetBrainsMono-Bold";
-  src: url("./fonts/JetBrainsMono-Bold.woff2") format("woff");
+  font-family: "AtkinsonHyperlegibleMono";
+  src: url("./fonts/AtkinsonHyperlegibleMono-SemiBold.woff2") format("woff");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "AtkinsonHyperlegibleMono";
+  src: url("./fonts/AtkinsonHyperlegibleMono-Bold.woff2") format("woff");
   font-weight: 700;
 }
 @font-face {
-  font-family: "JetBrainsMono-ExtraBold";
-  src: url("./fonts/JetBrainsMono-ExtraBold.woff2") format("woff");
+  font-family: "AtkinsonHyperlegibleMono";
+  src: url("./fonts/AtkinsonHyperlegibleMono-ExtraBold.woff2") format("woff");
   font-weight: 900;
 }
+
+
 @font-face {
   font-family: "ScopeOne-Regular";
   src: url("./fonts/ScopeOne-Regular.woff2") format("woff");
@@ -30,7 +58,7 @@
   --column-width: calc(var(--square) + calc(5 * var(--gap)));
   --font-family-display: 'Goldman-Regular';
   --font-family-serif: 'ScopeOne-Regular';
-  --font-family-mono: 'JetBrainsMono-Regular';
+  --font-family-mono: 'AtkinsonHyperlegibleMono';
   --color-accent: #FFEB00;
   --color-accent-dim: #5E5600;
   --color-accent-transparent: color-mix(in srgb, var(--color-accent-dim), transparent 80%);
