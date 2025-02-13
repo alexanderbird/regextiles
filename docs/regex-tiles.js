@@ -237,6 +237,7 @@ function getGameConfiguration() {
   if (level === 11 || level === 12) {
     return {
       ...baseConfigLevels7AndUp,
+      letters: lettersForLevel11AndUp,
       tilesPerTick: { p25: 2, p50: 2, p75: 2, p100: 1 },
       colors: colorsSplit30To60To10
     }
@@ -244,13 +245,15 @@ function getGameConfiguration() {
   if (level < 15) {
     return {
       ...baseConfigLevels7AndUp,
-        tilesPerTick: { p25: 2, p50: 2, p75: 2, p100: 2 },
+      letters: lettersForLevel11AndUp,
+      tilesPerTick: { p25: 2, p50: 2, p75: 2, p100: 2 },
       colors: colorsSplit30To60To10
     }
   }
   return {
     ...baseConfigLevels7AndUp,
-      tilesPerTick: { p25: 3, p50: 2, p75: 2, p100: 2 },
+    letters: lettersForLevel11AndUp,
+    tilesPerTick: { p25: 3, p50: 2, p75: 2, p100: 2 },
     colors: colorsSplit30To60To10
   }
 }
