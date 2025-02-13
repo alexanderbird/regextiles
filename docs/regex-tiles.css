@@ -410,18 +410,24 @@ header h1 {
 .input:before {
   content: '/';
   display: block;
+  width: max-content;
+  margin-right: 2px;
 }
 .input:after {
   content: '/g';
   display: block;
+  width: max-content;
+  margin-left: 2px;
 }
 .input input {
   border-top: 0;
   border-right: 0;
   border-left: 0;
   border-color: var(--color-accent-dim);
+  display: block;
   outline: 0;
-  width: calc(100% - 2em);
+  width: 0;
+  flex-grow: 1;
   font-family: inherit;
   background-color: transparent;
   font-size: inherit;
