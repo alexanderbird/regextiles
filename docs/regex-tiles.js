@@ -230,7 +230,7 @@ function getGameConfiguration() {
     }
   }
   const lettersForLevel11AndUp = [
-    'abcdeABCDE12345'.repeat(4),
+    'abcxyzABCXYZ123789'.repeat(4),
     '-_,'.repeat(2),
     '+^$.\\'
   ].join('').split('');
