@@ -229,6 +229,11 @@ function getGameConfiguration() {
     return { ...baseConfigLevels7AndUp, colors: colorsSplit30To60To10
     }
   }
+  const lettersForLevel11AndUp = [
+    'abcdeABCDE12345'.repeat(4),
+    '-_,'.repeat(2),
+    '+^$.\\'
+  ].join('').split('');
   if (level === 11 || level === 12) {
     return {
       ...baseConfigLevels7AndUp,
